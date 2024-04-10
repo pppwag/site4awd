@@ -1,9 +1,10 @@
-const uploadAvatar = require('../multer/upload');
+const uploadApi = require('../multer/upload');
 
 class UserController{
     async upload(req, res){
         try{
-            const uploadRes = await uploadAvatar(req, res);
+            const uploadRes = await uploadApi(req, res);
+            
             res.send({
                 meta:{code:200,msg:"上传成功！"},
                 data:{img_url:uploadRes}

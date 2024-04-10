@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
 
 const multerConfig = multer({
     storage: storage,
-    limits:{fileSize: 2097152}
+    limits:{fileSize: 20971520}     //20M文件大小限制
 });
 
 module.exports = multerConfig;

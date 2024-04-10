@@ -3,7 +3,7 @@ const multerConfig = require('./multerConfig');
 const BaseURL = 'http://localhost:8080';
 const imgPath = '/public/';
 
-function uploadAvatar(req, res){
+function uploadApi(req, res){
     return new Promise((resolve, reject) => {
         multerConfig.single('file')(req, res, function(err){
             if(err){
@@ -15,4 +15,4 @@ function uploadAvatar(req, res){
     })
 }
 
-module.exports = uploadAvatar;
+module.exports = uploadApi;

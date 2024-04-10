@@ -13,4 +13,7 @@ router.get("/adminlogin/", (req, res) => {	//假管理员登录，蜜獾
 	console.log('[info]' + res.ip + ' requested: ' + filePath);
 });
 
+router.post("/login", (req,res) => {	//处理登陆请求，且实现token分发
+
+})
 module.exports = router;
