@@ -1,17 +1,9 @@
-const mysql = require('mysql');
-//用户数据库连接
-const conn = mysql.createConnection({
-	host: "127.0.0.1",
-	user: "",
-	password: "",
-	database: "",
-	multipleStatements: true,
-});
+const conn = require('./userDBconn');
 
 function dbLogin(userName, passWord) {
     if(!userName || !passWord){
         return {
-            code: 1,
+            code: 0,
             msg: "用户名或密码为空！"
         };
     }
@@ -20,6 +12,7 @@ function dbLogin(userName, passWord) {
         if(err) throw err;
         if(results.length > 0){
             return {
+                code: 1,
                 identity: results[0].identity,
                 userName: results[0].userName,
             }

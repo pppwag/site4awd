@@ -1,21 +1,14 @@
-//图片数据库连接
-const piconn = mysql.createConnection({
-	host: "127.0.0.1",
-	user: "",
-	password: "",
-	database: "",
-	multipleStatements: true,
-});
+const piconn = require('./picDBconn');
 
 function dbSearch(id){
     if(typeof id != 'undefined'){
-        const sqlStr = "SELECT * FROM picture WHERE id = ?"
+        const sqlStr = "SELECT * FROM picture WHERE id = ?";
         piconn.query(sqlStr, [id], (err, results) => {
             if(err) throw err;
             if(results.length > 0){
                 console.log("获取图片，id： " + id);
                 return{
-                    results[0].path;
+                    results,
                 }
             }else{
                     console.log("查询失败");
@@ -23,6 +16,20 @@ function dbSearch(id){
                 }
             })
         }else{
-            
+            const sqlStr = "SELECT * FROM picture";
+            piconn.query(sqlStr, (err, results) => {
+                if(err) throw err;
+                if(results.length > 0){
+                    console.log("获取了所有图片信息。");
+                    return{
+                        results,
+                    }
+                }else{
+                    console.log("也许并没有图片。");
+                    return -1;
+                }
+            })
         }
     }
+
+module.exports = dbSearch;
