@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const xss = require('xss');
-const mysql = require('mysql');
 var jwt = require('jsonwebtoken');
 const databaseController = require('../controller/databaseController');
 
@@ -17,10 +16,10 @@ router.get("/adminlogin/", (req, res) => {	//假管理员登录，蜜獾
 	console.log('[info]' + res.ip + ' requested: ' + filePath);
 });
 
-router.post("/login", (req,res) => {	//处理登陆请求，且实现token分发
+router.post("/", (req,res) => {	//处理登陆请求，且实现token分发
 	var userName = xss(req.body.userName);
-	var passWord = xss(req.body.userName);
-	var result = databaseController(userName, passWord);
+	var passWord = xss(req.body.passWord);
+	var result = databaseController.login(userName, passWord);
 	if(result.code === 1){
 		var token = jwt.sign(
 			{
@@ -40,7 +39,6 @@ router.post("/login", (req,res) => {	//处理登陆请求，且实现token分发
 			jwt.verify(token, "secret", (err, decode) => {
 				if(err){
 					res.send({code: 0, msg: "登陆失败"});
-				}
 			})
 		}
 	}

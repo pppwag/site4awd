@@ -12,7 +12,7 @@ function dbSearch(id){
                 }
             }else{
                     console.log("查询失败");
-                    return -1;
+                    return 0;
                 }
             })
         }else{
@@ -26,7 +26,7 @@ function dbSearch(id){
                     }
                 }else{
                     console.log("也许并没有图片。");
-                    return -1;
+                    return 0;
                 }
             })
         }
