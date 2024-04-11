@@ -1,12 +1,13 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
+const path = require('path');
 const xss = require('xss');
 const databaseController = require('../controller/databaseController');
 
 router.get("/", (req, res) => {
-    filePath = path.join(__dirname,'../views/regiter.html');
+    const filePath = path.join(__dirname,'../views/regiter.html');
     res.sendFile(filePath);
-    console.log('[info]' + res.ip + ' requested: ' + filePath);
+    console.log('[info]' + req.ip + ' requested: ' + filePath);
 });
 
 router.post("/", (req, res) => {
