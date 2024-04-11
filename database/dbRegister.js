@@ -18,7 +18,7 @@ function dbRegister(userName, passWord) {
                     msg: "注册失败，用户名重复。"
                 };
             }else{
-                    const sqlStr = "insert into user(userName,passWord) values(?,?)";
+                    const sqlStr = "insert into user(ID,userName,passWord) values(0,?,?)";
                     conn.query(sqlStr, [userName,passWord], (err,results) => {
                         if(err) throw err;
                         if(results.affectedRows === 1){

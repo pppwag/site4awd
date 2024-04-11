@@ -5,9 +5,8 @@ const xss = require('xss');
 const databaseController = require('../controller/databaseController');
 
 router.get("/", (req, res) => {
-    const filePath = path.join(__dirname,'../views/regiter.html');
-    res.sendFile(filePath);
-    console.log('[info]' + req.ip + ' requested: ' + filePath);
+    res.render('register.html');
+    console.log('[info]' + req.ip + ' requested: register.html');
 });
 
 router.post("/", (req, res) => {
@@ -16,9 +15,8 @@ router.post("/", (req, res) => {
     var result = databaseController.register(userName, passWord);
     if(result.code === 1){
         res.send(message);
-        const filePath = path.join(__dirname,'../views/login.html');
-        res.sendFile(filePath);
-        console.log("[info] 注册完毕跳转: " + filePath);
+		res.render('login.html')
+        console.log("[info] 注册完毕跳转: login.html");
     }else{
         res.send(message);
     }

@@ -3,9 +3,8 @@ const router = express.Router();
 const path = require('path');
 
 router.get("/", (req, res) => {		//上传页面
-	const filePath = path.join(__dirname,'../views/upload.html');
-	res.sendFile(filePath);
-	console.log('[info]' + req.ip + ' requested: ' + filePath);
+	res.render('upload.html');
+	console.log('[info]' + req.ip + ' requested: upload.html');
 });
 
 module.exports = router;

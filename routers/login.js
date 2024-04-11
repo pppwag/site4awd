@@ -6,15 +6,13 @@ var jwt = require('jsonwebtoken');
 const databaseController = require('../controller/databaseController');
 
 router.get("/", (req, res) => {		//登录页面
-	const filePath = path.join(__dirname,'../views/login.html');
-	res.sendFile(filePath);
-	console.log('[info]' + req.ip + ' requested: ' + filePath);
+	res.render('login.html');
+	console.log('[info]' + req.ip + ' requested: login.html');
 });
 
 router.get("/adminlogin/", (req, res) => {	//假管理员登录，蜜獾
-	const filePath = 	path.join(__dirname,'../views/adminlogin.html');
-	res.sendFile(filePath);
-	console.log('[info]' + req.ip + ' requested: ' + filePath);
+	res.render('adminlogin.html');
+	console.log('[info]' + req.ip + ' requested: adminlogin.html');
 });
 
 router.post("/", (req,res) => {	//处理登陆请求，且实现token分发

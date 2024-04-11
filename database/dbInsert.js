@@ -1,8 +1,8 @@
 const piconn = require('./picDBconn');
 
-function dbInsert(path){
-    const sqlStr = "insert into picture(id,path) values(0,?)";
-    piconn.query(sqlStr, [path], (err, results) => {
+function dbInsert(path, uid){
+    const sqlStr = "insert into picture(ID,path,owner) values(0,?,?)";
+		piconn.query(sqlStr, [path,id,tag], (err, results) => {
         if(err) throw err;
         if(results.affectedRows === 1){
             var id;

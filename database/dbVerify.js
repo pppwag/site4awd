@@ -19,6 +19,7 @@ function dbVerify(id, userName){
             return{
                 code: 1,
                 msg: "鉴权通过",
+				id: id,
             }
         }
     })
