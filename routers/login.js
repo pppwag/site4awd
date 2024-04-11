@@ -39,8 +39,10 @@ router.post("/", (req,res) => {	//处理登陆请求，且实现token分发
 			jwt.verify(token, "secret", (err, decode) => {
 				if(err){
 					res.send({code: 0, msg: "登陆失败"});
+			}
 			})
 		}
-	}
+    }
 })
+
 module.exports = router;
