@@ -15,7 +15,7 @@ class databaseController{
         }
     }
 
-    insert(path){
+    insert(path,uid){
         try{
             const id = dbInsert(path);
             return id;

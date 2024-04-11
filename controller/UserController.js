@@ -20,11 +20,11 @@ class UserController {
                 }
                 if (decode) {
                     // 如果验证通过，从解码后的信息中获取用户ID和用户名
-                    const id = decode.id;
+                    const uid = decode.id;
                     const name = decode.userName;
 
                     // 调用数据库控制器的 verify 方法，这里假设 verify 是一个异步方法
-                    databaseController.verify(id, (err, isValid) => {
+                    databaseController.verify(uid, (err, isValid) => {
                         if (err || !isValid) {
                             return res.status(403).json({ code: 0, msg: "用户权限不足" });
                         }
@@ -33,7 +33,7 @@ class UserController {
                         uploadApi(req, res, async (uploadRes) => {
                             // 插入数据到数据库，假设 insert 也是一个异步方法
                             try {
-                                const insertedId = await databaseController.insert(uploadRes);
+                                const insertedId = await databaseController.insert(uploadRes,uid);
                                 res.status(200).json({
                                     meta: { code: 200, msg: "上传成功！" },
                                     data: { img_url: uploadRes, user_id: insertedId },

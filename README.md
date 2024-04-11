@@ -52,6 +52,6 @@ POST方法，真实上传接口，接受key为file的png/jpeg/gif文件上传,**
 然后启动应用：
 
     .../site4awd/$ npm install
-    .../stie4awd/$ node server.js
+    .../stie4awd/$ node app.js
 
 #### Par1y
