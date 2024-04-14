@@ -8,7 +8,7 @@ router.get("/", (req, res) => {		//处理默认目录get请求
 });
 
 router.get("/about", (req, res) => {	//处理about目录get请求
-	res.sendFile('about.html');
+	res.render('about.html');
 	ip = req.ip
 	console.log("[info] " + req.ip + " requested: about.html");
 });
