@@ -1,8 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 const xss = require('xss');
+const crypto = require('crypto');
 const databaseController = require('../controller/databaseController');
+
+//sha256加密
+function sha256(str) {
+  const hash = crypto.createHash('sha256');
+  hash.update(str);
+  return hash.digest('hex');
+}
 
 router.get("/", (req, res) => {
     res.render('register.html');
@@ -11,7 +18,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
     var userName = xss(req.body.userName);
-    var passWord = xss(req.body.passWord);
+    var passWord = sha256(xss(req.body.passWord));
     var result = databaseController.register(userName, passWord);
     if(result.code === 1){
         res.send(message);

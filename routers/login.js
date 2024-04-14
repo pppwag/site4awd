@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 const xss = require('xss');
 var jwt = require('jsonwebtoken');
 const databaseController = require('../controller/databaseController');

@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require("express");
 const router = express.Router();	//注册路由模块
 
