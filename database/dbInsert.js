@@ -2,7 +2,7 @@ const piconn = require('./picDBconn');
 
 function dbInsert(path, uid){
     const sqlStr = "insert into picture(ID,path,owner) values(0,?,?)";
-		piconn.query(sqlStr, [path,id,tag], (err, results) => {
+		piconn.query(sqlStr, [path,uid], (err, results) => {
         if(err) throw err;
         if(results.affectedRows === 1){
             var id;
@@ -12,10 +12,10 @@ function dbInsert(path, uid){
                     id = identity;
                 }
             });
-            console.log("插入了一条数据： " + path);
+            console.log("插入了一条数据" + id);
             return id;
         }else{
-            console.log("插入数据失败。" + path);
+            console.log("插入数据失败。");
             return -1;
         }
     })
