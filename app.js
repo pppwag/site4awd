@@ -24,7 +24,7 @@ app.use("/login", login);	//注册登录页面路由
 app.use('/register', register);	//注册页面路由
 app.use('/upload', edit);	//注册上传页面路由
 app.use('/upload/api', upload);
-app.use(errorHandler);
+//app.use(errorHandler);
 
 //错误处理
 function errorHandler(err, req, res, next) {

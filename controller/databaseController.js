@@ -10,7 +10,7 @@ class databaseController{
             var result = dbSearch(id);
             return result;
         }catch(error){
-            res.send(error);
+            console.log(error);
             return 0;
         }
     }
@@ -20,7 +20,7 @@ class databaseController{
             const id = dbInsert(path);
             return id;
         }catch(error){
-            res.send(error);
+            console.log(error);
             return 0;
         }
     }
@@ -28,42 +28,45 @@ class databaseController{
     register(userName, passWord){
         try{
             const message = dbRegister(userName, passWord);
-            // res.send(message.msg);
+            // console.log(message.msg);
             return message;
         }catch(error){
-            res.send(error);
+            console.log(error);
             return 0;
         }
     }
 
-    login(userName, passWord){
-        try{
-            const result = dbLogin(userName, passWord);
-            if(result.code === 0){
-                // res.send(result);
-                return 0;
-            }else{
-                return{code: 1,msg: "登陆成功", id: result.identity, userName: result.userName};
-            }
-        }catch(error){
-            res.send(error);
-            return 0;
-        }
-    }
+	async login(userName, passWord) {
+		    try {
+				const result = await dbLogin(userName, passWord);
+				if (result.code === 0) {
+						return {code: 0};
+//						console.log(result.msg);
+				} else {
+						return { code: 1, msg: "登录成功", id: result.identity, userName: result.userName };
+//						console.log(result.msg);
+				}
+		    } catch (error) {
+				console.log(error);
+				return {code: 0};
+			    }
+		}
 
-    verify(id, userName){
+    async verify(id, userName, callback){
         try{
-            const result = dbVerify(id, userName);
-            if(result.code === 1){
-                console.log(result);
-                return 1;
+            const result = await dbVerify(id, userName);
+            if(result === 1){
+                console.log("鉴权通过" + result);
+				callback(null,1);
             }else{
-                console.log(result);
-                return 0;
+                console.log("鉴权不通过" + result);
+                callback(null,0);
             }
         }catch(error){
-            res.send(error);
-            return 0;
+            console.log(error);
+            callback(error,0);
         }
     }
 }
+
+module.exports = new databaseController();
