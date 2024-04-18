@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const path = require('path');
 
 router.get("/", (req, res) => {		//上传页面
 	res.render('upload.html');

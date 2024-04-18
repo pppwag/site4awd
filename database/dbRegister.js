@@ -8,7 +8,7 @@ function dbRegister(userName, passWord) {
         };
     }
     if(userName && passWord){
-        const result = "SELECT * FROM user WHERE userName = '${userName}";
+        const result = "SELECT * FROM user WHERE userName=?";
         conn.query(result, [userName], (err, results) => {
             if(err) throw err;
             if(results.length >= 1){

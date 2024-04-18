@@ -5,7 +5,7 @@ const imgPath = '/public/';
 
 function uploadApi(req, res){
     return new Promise((resolve, reject) => {
-        multerConfig.single('file')(req, res, function(err){
+        multerConfig.single('picture')(req, res, function(err){
             if(err){
                 reject(err);
             }else{

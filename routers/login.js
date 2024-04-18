@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 const xss = require('xss');
+const crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 const databaseController = require('../controller/databaseController');
+var secret = "niumochoubin";
 
 router.get("/", (req, res) => {		//登录页面
 	res.render('login.html');
@@ -15,18 +16,27 @@ router.get("/adminlogin/", (req, res) => {	//假管理员登录，蜜獾
 	console.log('[info]' + req.ip + ' requested: adminlogin.html');
 });
 
-router.post("/", (req,res) => {	//处理登陆请求，且实现token分发
+//sha256加密
+function sha256(str) {
+  const hash = crypto.createHash('sha256');
+  hash.update(str);
+  return hash.digest('hex');
+}
+
+router.post("/", async (req,res) => {	//处理登陆请求，且实现token分发
 	var userName = xss(req.body.userName);
-	var passWord = xss(req.body.passWord);
-	var result = databaseController.login(userName, passWord);
+	var passWord = sha256(xss(req.body.passWord));
+//		console.log(userName, '+', passWord);
+	var result = await databaseController.login(userName, passWord);
+		console.log(result);
 	if(result.code === 1){
 		var token = jwt.sign(
 			{
 				identity: result.id,
 				userName: result.userName,
 			},
-			"secret",
-			{expressIn:"1h"},
+			secret,
+			{expiresIn:"1h"},
 		)
 		console.log(token);
 		res.send({code: 1, msg: "登陆成功", token:token});
