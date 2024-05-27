@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>首页</title>
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>照片墙</h1>
+    <img id="randomImage" src="https://picsum.photos/600/400" alt="Random Image">
+    <div>
+        <button id="generateButton">登录</button>
+        <button id="generateButton">生成新图片</button> 
+        <button id="generateButton">注册</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById('generateButton').addEventListener('click', function() {
+        var randomImage = document.getElementById('randomImage');
+        randomImage.src = 'https://picsum.photos/600/400?' + new Date().getTime();
+    });
+</script>
+
+</body>
+</html>
