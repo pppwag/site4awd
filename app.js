@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const cors = require('cors');
 const ejs = require('ejs');
 const app = express();
@@ -15,6 +16,7 @@ app.engine('.html', ejs.__express)
 app.use(cors());	//开启跨域支持
 app.use(bodyParser.json());		//解析json表单
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(morgan('short'));   //日志服务
 
 //使用目录public注册静态资源
 app.use(express.static('./public/'));

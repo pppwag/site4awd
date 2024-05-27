@@ -8,12 +8,12 @@ var secret = "niumochoubin";
 
 router.get("/", (req, res) => {		//登录页面
 	res.render('login.html');
-	console.log('[info]' + req.ip + ' requested: login.html');
+	// console.log('[info]' + req.ip + ' requested: login.html');
 });
 
 router.get("/adminlogin/", (req, res) => {	//假管理员登录，蜜獾
 	res.render('adminlogin.html');
-	console.log('[info]' + req.ip + ' requested: adminlogin.html');
+	// console.log('[info]' + req.ip + ' requested: adminlogin.html');
 });
 
 //sha256加密

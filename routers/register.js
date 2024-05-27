@@ -13,7 +13,7 @@ function sha256(str) {
 
 router.get("/", (req, res) => {
     res.render('register.html');
-    console.log('[info]' + req.ip + ' requested: register.html');
+    // console.log('[info]' + req.ip + ' requested: register.html');
 });
 
 router.post("/", (req, res) => {
